@@ -10,15 +10,17 @@
 
 */
 
+
 .page {
   min-inline-size: 320px;
+  max-inline-size: 1440px;
   min-block-size: 100dvb;
   font-family: var(--font-main);
   font-variation-settings: "wght" var(--font-weight-text);
   background-image: var(--page-background);
   background-size: cover;
   background-attachment: fixed;
-  margin: 0;
+  margin: auto;
   padding: 100px var(--page-padding);
 }
 
@@ -66,14 +68,13 @@
 .card__title {
   font-size: 18px;
   font-variation-settings: "wght" var(--font-weight-title);
-  height: var(--title-line-height);
   padding: var(--title-padding);
 }
 
 .card__media {
   position: relative;
   width: 100%;
-  height: var(--picture-height);
+  /*height: var(--picture-height);*/
   border-block: 2px;
   border-style: solid;
   border-color: var(--color-black);
@@ -91,7 +92,6 @@
   mix-blend-mode: hard-light;
   opacity: 0.5;
   z-index: 1;
-  letter-spacing: 0%;
   text-shadow:
     -1px -1px var(--color-white),
     1px -1px var(--color-white),
@@ -109,10 +109,10 @@
 
 .card__image {
   display: block;
+  aspect-ratio: 1 / 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /*object-position: center;*/
 }
 
 .card__filter-neon {
@@ -197,21 +197,33 @@
 
 .button {
   position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-accent);
   gap: 8px;
   padding: 10px 16px;
-  border: 2px solid var(--color-black);
-  background: transparent;
-  font-family: var(--font-accent);
   font-size: 14px;
   line-height: 90%;
   font-weight: 400;
-  text-transform: uppercase;
-  color: var(--color-black);
+  overflow: hidden;
+  background-color: white;
+  border: 2px solid black;
   cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  isolation: isolate;
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 var(--accent-color);
 }
 
 .button:focus-visible {
@@ -219,12 +231,19 @@
   box-shadow: 2px 2px 0px 0px var(--color-black);
 }
 
-.button:focus {
-  outline: none;
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: black;
+
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
 }
 
-.button:hover {
-  transition: background-color 0.5s ease-in-out;
+/* HOVER */
+.button:hover::before {
+  transform: translateX(0);
 }
 
 .card__like-button {
@@ -233,41 +252,9 @@
   padding: 9px 17px;
 }
 
-.button__text {
-  text-transform: none;
-}
-
-.button__text,
-.footer__button-text,
-.footer__disk,
-.popup__disk {
-  position: relative;
-  z-index: 1;
-  color: inherit;
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--color-black);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: 0.5s ease-in-out;
-  z-index: 0;
-}
-
-.button:hover::before {
-  transform: scaleX(1);
-}
-
-.button:hover {
-  color: var(--color-white);
-}
-
 .footer__button {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(2, auto);
   justify-self: center;
   align-items: center;
   background-color: var(--color-white);
@@ -283,6 +270,12 @@
 }
 
 .footer__disk {
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  z-index: 1;
+  filter: invert(1);
+  mix-blend-mode: difference;
   width: 21px;
   height: 21px;
   flex-shrink: 0;
@@ -382,7 +375,6 @@
 
 @media (min-width: 1440px) {
   .card__title {
-    height: var(--title-line-height-adaptive);
     padding: var(--title-padding-adaptive);
   }
 

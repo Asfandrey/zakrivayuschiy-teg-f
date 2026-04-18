@@ -599,7 +599,7 @@
         </article>
         <button
           class="button footer__button"
-          type="submit"
+          type="button"
           onclick="window['memory_dialog'].showModal()"
           aria-controls="memory_dialog"
         >
@@ -610,12 +610,11 @@
           >
             <use href="./svg/floppy.svg#disk"></use>
           </svg>
-          <span class="footer__button-text">Сохранить на память</span>
+          <span class="button__text footer__button-text">Сохранить на память</span>
         </button>
       </section>
     </main>
-    <script src="./scripts/like.js"></script>
-    <dialog class="popup__window" id="memory_dialog">
+        <dialog class="popup__window" id="memory_dialog">
       <div class="popup__content">
         <svg
           class="popup__disk"
@@ -628,11 +627,12 @@
       </div>
       <button
         class="button popup__button"
-        type="submit"
+        type="button"
         onclick="window['memory_dialog'].close()"
       >
         <span class="button__text popup__button-text">ok</span>
       </button>
     </dialog>
+    <script src="./scripts/like.js"></script>
   </body>
 </html>

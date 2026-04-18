@@ -41,7 +41,7 @@
   transform-origin: center;
 }
 
-.is-liked .sparks {
+.is-liked .sparkle {
   animation-name: sparkle-fade;
   animation-duration: 0.3s;
   animation-timing-function: ease-in;
