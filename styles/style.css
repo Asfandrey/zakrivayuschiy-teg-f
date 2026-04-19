@@ -74,7 +74,6 @@
 .card__media {
   position: relative;
   width: 100%;
-  /*height: var(--picture-height);*/
   border-block: 2px;
   border-style: solid;
   border-color: var(--color-black);
@@ -157,7 +156,8 @@
 .card__text {
   width: var(--text-width);
   font-size: 18px;
-  font-variation-settings: "wght" var(--font-weight-text);
+  /*font-variation-settings: "wght" var(--font-weight-text);*/
+  max-width: 100%;
   line-height: 21px;
 }
 
@@ -167,9 +167,7 @@
   justify-self: end;
   align-self: center;
   gap: 3px;
-  inline-size: 151px;
   block-size: 38px;
-  margin-right: 32px;
 }
 
 .card__icon-button {
@@ -241,7 +239,6 @@
   transition: transform 0.5s ease-in-out;
 }
 
-/* HOVER */
 .button:hover::before {
   transform: translateX(0);
 }
@@ -276,8 +273,8 @@
   z-index: 1;
   filter: invert(1);
   mix-blend-mode: difference;
-  width: 21px;
-  height: 21px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
 }
 
@@ -386,5 +383,10 @@
     grid-template-columns: repeat(2, auto);
     row-gap: 0px;
     column-gap: 8px;
+  }
+
+  .footer__disk {
+    width: 21px;
+    height: 21px;
   }
 }
